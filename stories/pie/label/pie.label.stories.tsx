@@ -49,3 +49,13 @@ export const NoLabels: Story = {
     showLabel: false,
   },
 };
+
+/** Custom formatter: show the raw value instead of percent. */
+export const CustomFormatter: Story = {
+  args: {
+    data,
+    showLabel: true,
+    labelPosition: 'outside',
+    labelFormatter: (params: any) => `${params.name}: ${params.value}`,
+  },
+};

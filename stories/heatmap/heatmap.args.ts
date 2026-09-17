@@ -20,6 +20,10 @@ const heatmapOnlyArgTypes = {
     control: 'boolean',
     description: 'When true, shows the numeric value on each cell. Default: false',
   },
+  labelFormatter: {
+    control: false,
+    description: 'Formatter for heatmap cell labels. ({ value: [xIndex, yIndex, value], dataIndex, seriesName? }) => string',
+  },
   showXAxis: {
     control: 'boolean',
     description: 'Whether to show the X-axis labels. Default: true',

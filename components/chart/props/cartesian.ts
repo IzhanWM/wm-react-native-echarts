@@ -113,6 +113,16 @@ export interface CartesianChartProps extends CommonChartProps {
    */
   yAxisLabel?: string;
   /**
+   * Distance (px) between the X-axis caption ({@link xAxisLabel}) and the axis line/labels.
+   * @default 25 (category axis); 40 (value axis)
+   */
+  xAxisNameGap?: number;
+  /**
+   * Distance (px) between the Y-axis caption ({@link yAxisLabel}) and the axis line/labels.
+   * @default 25 (category axis); 40 (value axis)
+   */
+  yAxisNameGap?: number;
+  /**
    * Grid positioning configuration.
    */
   grid?: CartesianGrid;

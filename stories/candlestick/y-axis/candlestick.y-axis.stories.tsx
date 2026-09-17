@@ -51,6 +51,16 @@ export const YAxisLabel: Story = {
   },
 };
 
+/** yAxisNameGap — extra distance (px) between the Y-axis label and the axis line. */
+export const YAxisNameGap: Story = {
+  args: {
+    data,
+    xAxisData,
+    yAxisLabel: 'Price ($)',
+    yAxisNameGap: 55,
+  },
+};
+
 /** minY and maxY — fixed price axis with non-zero floor and padding below lows / above highs. */
 export const FixedMinMax: Story = {
   args: {

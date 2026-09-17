@@ -9,6 +9,7 @@ export * from './pie';
 export * from './scatter';
 export * from './radar';
 export * from './radial';
+export * from './stack';
 export * from './gauge';
 export * from './geo';
 export * from './bubble';

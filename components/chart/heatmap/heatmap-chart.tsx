@@ -2,6 +2,7 @@ import { withResponsiveContainer } from '../chart-container';
 import { useChartTheme, withChartTheme } from '../chart-theme.context';
 import type { HeatmapChartProps, HeatmapChartSelectEvent } from './heatmap-chart.props';
 import { SkiaChart, SkiaRenderer } from '@wuba/react-native-echarts';
+import { scrollFriendlyGesture } from '../gesture';
 import { HeatmapChart as EChartsHeatmapChart } from 'echarts/charts';
 import {
   GridComponent,
@@ -39,6 +40,7 @@ const ChartComponent = ({
   width = 320,
   height = 300,
   showLabel = false,
+  labelFormatter,
   showXAxis = true,
   showYAxis = true,
   showHighlighter = true,
@@ -171,6 +173,7 @@ const ChartComponent = ({
       label: {
         show: showLabel,
         color: theme.legend.textColor,
+        ...(labelFormatter ? { formatter: labelFormatter } : {}),
       },
       emphasis: showHighlighter
         ? {
@@ -205,6 +208,7 @@ const ChartComponent = ({
     normalizedData,
     theme,
     showLabel,
+    labelFormatter,
     showXAxis,
     showYAxis,
     showHighlighter,
@@ -269,7 +273,7 @@ const ChartComponent = ({
 
   return (
     <View style={{ width, height, position: 'relative' }}>
-      <SkiaChart ref={chartRef} useRNGH />
+      <SkiaChart ref={chartRef} useRNGH gesture={scrollFriendlyGesture} />
       {renderHeatmapTooltipOverlay()}
     </View>
   );

@@ -1,6 +1,6 @@
 {
   "name": "RNEBubbleChart",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,9 +10,8 @@
   "displayName": "Bubble Chart",
   "description": "Unified bubble chart component supporting all variations: default, multiple series, variable-size bubbles, interactions, legends, and tooltip configurations",
   "iconUrl": "icon.svg",
-  "dependencies": {
-    "@wavemaker/react-native-echarts": "1.0.1",
-    "@shopify/react-native-skia": "2.6.2"
+  "devDependencies": {
+    "@wavemaker/react-native-echarts": "^1.1.0"
   },
   "keywords": [
     "bubble",

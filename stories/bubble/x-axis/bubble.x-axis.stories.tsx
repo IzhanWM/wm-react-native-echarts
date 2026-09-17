@@ -64,6 +64,15 @@ export const XAxisLabel: Story = {
   },
 };
 
+/** xAxisNameGap — extra distance (px) between the X-axis label and the axis line. */
+export const XAxisNameGap: Story = {
+  args: {
+    data,
+    xAxisLabel: 'X',
+    xAxisNameGap: 45,
+  },
+};
+
 /** minX and maxX — fixed numeric X scale (non-zero min; bubble X ≈ 10–30). */
 export const FixedMinMax: Story = {
   args: {

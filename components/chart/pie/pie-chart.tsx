@@ -12,6 +12,7 @@ import { echartsLegendLayoutFragment, pieCenterForLegend } from '../legend/echar
 import { createPieTooltipPreset, usePieItemTooltip } from './tooltip';
 import type { PieItemTooltipContext } from './tooltip/pie-item-tooltip.types';
 import { SkiaChart, SkiaRenderer } from '@wuba/react-native-echarts';
+import { scrollFriendlyGesture } from '../gesture';
 import { PieChart as EChartsPieChart } from 'echarts/charts';
 import {
   LegendComponent,
@@ -48,6 +49,7 @@ const ChartComponent = ({
   showLabel = true,
   labelPosition = 'outside',
   showLabelLine = true,
+  labelFormatter,
   showHighlighter = true,
   tooltip = 'card',
   renderTooltip,
@@ -112,14 +114,15 @@ const ChartComponent = ({
       seriesCenter?: [string, string]
     ): any => {
       const total = pieData.reduce((sum, d) => sum + d.value, 0);
+      const defaultFormatter = (params: any) => {
+        const pct = total > 0 ? ((params.value / total) * 100).toFixed(1) : '0';
+        return `${params.name}\n${pct}%`;
+      };
       const labelConfig: any = showLabel
         ? {
             show: true,
             position: labelPosition,
-            formatter: (params: any) => {
-              const pct = total > 0 ? ((params.value / total) * 100).toFixed(1) : '0';
-              return `${params.name}\n${pct}%`;
-            },
+            formatter: labelFormatter ?? defaultFormatter,
             ...labelStyle,
           }
         : { show: false };
@@ -237,6 +240,7 @@ const ChartComponent = ({
     showLabel,
     labelPosition,
     showLabelLine,
+    labelFormatter,
     showHighlighter,
     tooltipOverlayActive,
     theme,
@@ -306,7 +310,7 @@ const ChartComponent = ({
 
   return (
     <View style={{ width, height, position: 'relative' }}>
-      <SkiaChart ref={chartRef} useRNGH />
+      <SkiaChart ref={chartRef} useRNGH gesture={scrollFriendlyGesture} />
       {renderPieTooltipOverlay()}
     </View>
   );

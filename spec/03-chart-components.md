@@ -20,6 +20,7 @@ Source root: `components/chart/`. Each chart folder usually contains:
 | `CandlestickChart` | `candlestick/` | OHLC + optional volume |
 | `PieChart` | `pie/` | Donut, concentric rings |
 | `RadialChart` | `radial/` | Polar bar / nightingale rose |
+| `StackChart` | `stack/` | Single stacked track: bar, semi-circle or arc |
 | `RadarChart` | `radar/` | Spider chart |
 | `SimpleGauge`, `DigitalGauge`, `SpeedometerGauge`, `RadialGauge` | `gauge/` | Separate components |
 | `GeoChart`, `USChart`, `WorldChart` | `geo/` | Maps + bundled GeoJSON |
@@ -60,6 +61,42 @@ Implement `CartesianChartProps` unless noted. Common features:
 **RadialChart**: polar layout, similar legend/tooltip patterns to pie.
 
 **RadarChart**: indicator axes, multiple series, symbol options.
+
+## Stack (`stack/`)
+
+**StackChart** (`stack-chart.props.ts`): one track whose segments stack end to end.
+
+- `view`: `bar` (cartesian) \| `semi-circle` \| `arc` (both polar, single-category `radiusAxis`).
+- `layout`: `overlap` (default — every segment from `min`, longest series first so shorter ones
+  stay on top) \| `stack` (end to end). `drawOrder` carries each segment's `dataIndex` so the
+  legend, tooltip and select event keep reporting the authored order.
+- Overlapping bars are layered, never placed side by side: on cartesian via `barGap: '-100%'`, on
+  polar via one `polar` per layer, because that gap zeroes a polar bar's thickness. A stack uses two
+  layers (track behind, stacked run in front); an overlap uses one per bar. `layerCount` drives how
+  many `polar` / `angleAxis` / `radiusAxis` entries are emitted.
+- Data: `StackDataItem[]` or `number[]`; `max` reserves headroom. The `trackColor` series always
+  runs the full scale from `min` and is drawn first, so segments sit on top of it in both layouts.
+  With `max` omitted the scale ends at the longest segment in `overlap` and at the sum in `stack`,
+  leaving no track to draw.
+- `edge`: `curve` \| `flat`. Curved ends come from per-corner `itemStyle.borderRadius` — not
+  `roundCap`, which also rounds the joints between segments. The filled run caps at its first and
+  last *segment* (the track is excluded from that span) and the track caps at both of its own ends,
+  so the two read as separate shapes.
+  Two ECharts gotchas here, both invisible when every corner shares one radius (a pill), so they
+  only bite `stack` + `curve`:
+  1. The radius must be in **pixels** — a percentage silently resolves to zero on a *stacked* polar
+     sector. Hence the ring band is measured and halved, and the ring is laid out before the series.
+  2. Corner **order differs per coordinate system**: a cartesian bar takes
+     `[top-left, top-right, bottom-right, bottom-left]` (start, end, end, start) but a polar sector
+     takes `[start-inner, end-inner, start-outer, end-outer]` (start, end, start, end). It is not
+     the cartesian ring order; reusing that caps the far end of the segment instead.
+- Layout is measured, not reserved by constant: the legend's height/width is estimated from its
+  labels, the grid is sized to the bar (a single category would otherwise center it in a tall plot
+  area), the ring is scaled to fit what is left, and `packWithLegend` centers track + legend as one
+  block so slack falls outside the pair. Hence no `mergeCartesianGridForLegend`, whose flat 84px /
+  32% reserve is sized for full plots.
+- Props: scale (`min`/`max`/`interval`, `axisLabelFormatter`), geometry (`thickness`,
+  `innerRadius`/`outerRadius`, `startAngle`/`endAngle`), `centerText`, `tooltip`, `onSelect`.
 
 ## Gauges (`gauge/`)
 

@@ -6,6 +6,7 @@ import { echartsLegendLayoutFragment } from '../legend/echarts-legend-layout';
 import { createRadialTooltipPreset, useRadialItemTooltip } from './tooltip';
 import type { RadialItemTooltipContext } from './tooltip/radial-item-tooltip.types';
 import { SkiaChart, SkiaRenderer } from '@wuba/react-native-echarts';
+import { scrollFriendlyGesture } from '../gesture';
 import { PieChart as EChartsPieChart } from 'echarts/charts';
 import { LegendComponent, TitleComponent, TooltipComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
@@ -304,7 +305,7 @@ const ChartComponent = ({
 
   return (
     <View style={{ width, height, position: 'relative' }}>
-      <SkiaChart ref={chartRef} useRNGH />
+      <SkiaChart ref={chartRef} useRNGH gesture={scrollFriendlyGesture} />
       {renderRadialTooltipOverlay()}
     </View>
   );

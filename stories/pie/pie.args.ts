@@ -32,6 +32,10 @@ const pieOnlyArgTypes = {
     control: 'boolean',
     description: 'Whether to show label lines (connectors). Default: true when labels outside',
   },
+  labelFormatter: {
+    control: false,
+    description: 'Formatter for pie slice labels. ({ name, value, percent, dataIndex, seriesName? }) => string',
+  },
   tooltip: {
     control: 'select',
     options: ['card', 'compact', 'kpi', 'striped', 'none'],

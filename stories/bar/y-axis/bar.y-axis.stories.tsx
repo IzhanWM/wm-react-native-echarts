@@ -52,6 +52,15 @@ export const YAxisLabel: Story = {
   },
 };
 
+/** yAxisNameGap — extra distance (px) between the Y-axis label and the axis line. */
+export const YAxisNameGap: Story = {
+  args: {
+    data,
+    yAxisLabel: 'Category',
+    yAxisNameGap: 55,
+  },
+};
+
 /** minY and maxY — fixed category extent (horizontal bar: category index along Y). */
 export const FixedMinMax: Story = {
   args: {

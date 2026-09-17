@@ -1,0 +1,345 @@
+{
+  "name": "RNEStackChart",
+  "version": "1.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wavemaker/wm-react-native-echarts"
+  },
+  "homepage": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-stack--default",
+  "displayName": "Stack Chart",
+  "description": "Single stacked track rendered as a bar, semi-circle or arc: segments either overlap from a shared origin or run end to end, with an optional unfilled remainder for progress-style tracks",
+  "iconUrl": "icon.svg",
+  "devDependencies": {
+    "@wavemaker/react-native-echarts": "^1.1.1"
+  },
+  "keywords": [
+    "stack",
+    "stacked",
+    "chart",
+    "progress",
+    "track",
+    "bar",
+    "semi-circle",
+    "arc",
+    "gauge",
+    "overlap",
+    "contribution",
+    "visualization",
+    "data-analysis",
+    "chart/stack"
+  ],
+  "props": {
+    "data": {
+      "name": "data",
+      "displayName": "Data",
+      "description": "Segments stacked into one track, in draw order. Array of { label?: string, value: number, color?: string } or plain numbers. Example: [{ label: 'Employee', value: 700 }, { label: 'Employer', value: 480 }] or [700, 480]",
+      "type": "object",
+      "isList": true,
+      "isRequired": true
+    },
+    "view": {
+      "name": "view",
+      "displayName": "View",
+      "description": "Shape of the track. 'bar' = horizontal pill on a cartesian grid, 'semi-circle' = upper half circle (180°), 'arc' = gauge-style 270° arc. Default: 'bar'",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "bar",
+        "semi-circle",
+        "arc"
+      ],
+      "defaultValue": "bar",
+      "isList": false,
+      "isRequired": false
+    },
+    "layout": {
+      "name": "layout",
+      "displayName": "Layout",
+      "description": "How segments share the track. 'overlap' = every segment starts at min and segments lie on top of one another (longest drawn first), 'stack' = each segment starts where the previous one ended. Default: 'overlap'",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "overlap",
+        "stack"
+      ],
+      "defaultValue": "overlap",
+      "isList": false,
+      "isRequired": false
+    },
+    "min": {
+      "name": "min",
+      "displayName": "Min",
+      "description": "Start of the scale. Default: 0",
+      "type": "number",
+      "isList": false,
+      "defaultValue": 0,
+      "isRequired": false
+    },
+    "max": {
+      "name": "max",
+      "displayName": "Max",
+      "description": "End of the scale. When omitted the segments fill the whole track: min + the longest value in 'overlap' layout, min + the sum of the values in 'stack' layout. Set a larger value to leave an unfilled remainder, as in a progress track.",
+      "type": "number",
+      "isList": false,
+      "isRequired": false
+    },
+    "interval": {
+      "name": "interval",
+      "displayName": "Interval",
+      "description": "Distance between axis labels, in value units. Automatic when omitted.",
+      "type": "number",
+      "isList": false,
+      "isRequired": false
+    },
+    "trackColor": {
+      "name": "trackColor",
+      "displayName": "Track Color",
+      "description": "Color of the unfilled part of the track. Default: '#e8e8e899'",
+      "type": "string",
+      "isList": false,
+      "defaultValue": "#e8e8e899",
+      "isRequired": false
+    },
+    "thickness": {
+      "name": "thickness",
+      "displayName": "Thickness",
+      "description": "Thickness of the bar in pixels. 'bar' view only. Default: 24",
+      "type": "number",
+      "isList": false,
+      "defaultValue": 24,
+      "isRequired": false
+    },
+    "innerRadius": {
+      "name": "innerRadius",
+      "displayName": "Inner Radius",
+      "description": "Inner radius of the ring, e.g. '58%' or 60. 'semi-circle' / 'arc' views only. Default: '58%'",
+      "type": "string",
+      "isList": false,
+      "defaultValue": "58%",
+      "isRequired": false
+    },
+    "outerRadius": {
+      "name": "outerRadius",
+      "displayName": "Outer Radius",
+      "description": "Outer radius of the ring, e.g. '82%' or 90. 'semi-circle' / 'arc' views only. Default: '82%'",
+      "type": "string",
+      "isList": false,
+      "defaultValue": "82%",
+      "isRequired": false
+    },
+    "edge": {
+      "name": "edge",
+      "displayName": "Edge",
+      "description": "Rounded ('curve') or square ('flat') ends. The filled run and the unfilled track are capped separately, and joints between segments stay square either way. Default: 'curve'",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "curve",
+        "flat"
+      ],
+      "defaultValue": "curve",
+      "isList": false,
+      "isRequired": false
+    },
+    "startAngle": {
+      "name": "startAngle",
+      "displayName": "Start Angle",
+      "description": "Angle (degrees) the scale starts at, overriding the view default. 0 = right (3 o'clock), 90 = top, 180 = left. 'semi-circle' / 'arc' views only.",
+      "type": "number",
+      "isList": false,
+      "isRequired": false
+    },
+    "endAngle": {
+      "name": "endAngle",
+      "displayName": "End Angle",
+      "description": "Angle (degrees) the scale ends at, overriding the view default. 'semi-circle' / 'arc' views only.",
+      "type": "number",
+      "isList": false,
+      "isRequired": false
+    },
+    "showAxisLabels": {
+      "name": "showAxisLabels",
+      "displayName": "Show Axis Labels",
+      "description": "Whether to show the scale labels along the track. Default: true",
+      "type": "boolean",
+      "isList": false,
+      "defaultValue": true,
+      "isRequired": false
+    },
+    "axisLabelFormatter": {
+      "name": "axisLabelFormatter",
+      "displayName": "Axis Label Formatter",
+      "description": "Formats a scale label. (value) => string",
+      "type": "function",
+      "isList": false,
+      "isRequired": false
+    },
+    "axisLabelMargin": {
+      "name": "axisLabelMargin",
+      "displayName": "Axis Label Margin",
+      "description": "Distance between the track and its scale labels, in pixels. Negative values move the labels inside the ring on 'semi-circle' / 'arc'. Default: 8",
+      "type": "number",
+      "isList": false,
+      "defaultValue": 8,
+      "isRequired": false
+    },
+    "showSegmentLabels": {
+      "name": "showSegmentLabels",
+      "displayName": "Show Segment Labels",
+      "description": "Whether to draw the value of each segment inside the segment. Default: false",
+      "type": "boolean",
+      "isList": false,
+      "defaultValue": false,
+      "isRequired": false
+    },
+    "segmentLabelFormatter": {
+      "name": "segmentLabelFormatter",
+      "displayName": "Segment Label Formatter",
+      "description": "Formats the label drawn inside a segment. Implies Show Segment Labels. (value, label, index) => string",
+      "type": "function",
+      "isList": false,
+      "isRequired": false
+    },
+    "centerText": {
+      "name": "centerText",
+      "displayName": "Center Text",
+      "description": "Text drawn at the center of the ring (e.g. main value). 'semi-circle' / 'arc' views only.",
+      "type": "string",
+      "isList": false,
+      "isRequired": false
+    },
+    "centerSubtext": {
+      "name": "centerSubtext",
+      "displayName": "Center Subtext",
+      "description": "Text drawn below Center Text (e.g. label or unit). 'semi-circle' / 'arc' views only.",
+      "type": "string",
+      "isList": false,
+      "isRequired": false
+    },
+    "showLegend": {
+      "name": "showLegend",
+      "displayName": "Show Legend",
+      "description": "Whether to show the legend (segment labels). Default: true",
+      "type": "boolean",
+      "isList": false,
+      "defaultValue": true,
+      "isRequired": false
+    },
+    "legendPosition": {
+      "name": "legendPosition",
+      "displayName": "Legend Position",
+      "description": "Placement of the legend: 'top' | 'bottom' | 'left' | 'right'. Top and bottom use a horizontal legend with wrapping; left and right use a vertical legend. Default: 'bottom'",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "defaultValue": "bottom",
+      "isList": false,
+      "isRequired": false
+    },
+    "tooltip": {
+      "name": "tooltip",
+      "displayName": "Tooltip",
+      "description": "Built-in React Native segment tooltip overlay when renderTooltip is omitted: card (default), compact, kpi, striped, or none to hide the overlay.",
+      "type": "string",
+      "widget": "list",
+      "options": [
+        "card",
+        "compact",
+        "kpi",
+        "striped",
+        "none"
+      ],
+      "defaultValue": "card",
+      "isList": false,
+      "isRequired": false
+    },
+    "renderTooltip": {
+      "name": "renderTooltip",
+      "displayName": "Tooltip Content",
+      "description": "Optional (params) => ReactNode for the RN tooltip body at the pointer. When set, replaces the layout chosen by tooltip. Params: label, value, percent (share of total), percentOfMax (share of the min…max scale), total, color, seriesIndex, dataIndex, pointerX and pointerY in chart pixel space.",
+      "params": [
+        "label",
+        "value",
+        "percent",
+        "percentOfMax",
+        "total",
+        "color",
+        "seriesIndex",
+        "dataIndex",
+        "pointerX",
+        "pointerY"
+      ],
+      "type": "content",
+      "isList": false,
+      "isRequired": false
+    },
+    "width": {
+      "name": "width",
+      "displayName": "Width",
+      "description": "Width of the chart in pixels.",
+      "type": "string",
+      "pattern": "^\\d+(%|px|pt)?$",
+      "defaultValue": "100%",
+      "isList": false,
+      "isRequired": false
+    },
+    "height": {
+      "name": "height",
+      "displayName": "Height",
+      "description": "Height of the chart in pixels.",
+      "type": "string",
+      "pattern": "^\\d+(%|px|pt)?$",
+      "defaultValue": "300",
+      "isList": false,
+      "isRequired": false
+    },
+    "theme": {
+      "name": "theme",
+      "displayName": "Theme",
+      "description": "Partial theme override. Merged with default theme from ChartThemeContext.",
+      "type": "object",
+      "isList": false,
+      "isRequired": false,
+      "show": false
+    },
+    "colors": {
+      "name": "colors",
+      "displayName": "Colors",
+      "description": "Colors for the chart segments. Overrides theme colors. Example: ['#3b82f6', '#10b981', '#f59e0b']",
+      "type": "string",
+      "isList": true,
+      "isRequired": false
+    }
+  },
+  "events": {
+    "onSelect": {
+      "name": "onSelect",
+      "displayName": "On Select",
+      "description": "Callback when the user selects (taps/clicks) a segment. Event: seriesIndex, dataIndex, label, value, percent.",
+      "type": "function",
+      "params": [
+        "event"
+      ],
+      "isList": false,
+      "isRequired": false
+    }
+  },
+  "group": "chart/stack",
+  "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/arc.png",
+      "/assets/images/flat.png",
+      "/assets/images/semicircle.png"
+    ],
+    "thumbnailImage": "/assets/images/arc.png",
+    "icon": "icon.svg",
+    "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-stack--default"
+  },
+  "webSupport": true
+}

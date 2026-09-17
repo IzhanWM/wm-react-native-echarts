@@ -1,6 +1,6 @@
 {
   "name": "RNERadarChart",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,9 +10,8 @@
   "displayName": "Radar Chart",
   "description": "Unified radar chart component supporting all variations: basic, multiple, grid-circle, grid-filled, dots, lines-only, and custom-label configurations",
   "iconUrl": "icon.svg",
-  "dependencies": {
-    "@wavemaker/react-native-echarts": "1.0.1",
-    "@shopify/react-native-skia": "2.6.2"
+  "devDependencies": {
+    "@wavemaker/react-native-echarts": "^1.1.0"
   },
   "keywords": [
     "radar",

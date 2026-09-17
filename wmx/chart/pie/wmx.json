@@ -1,6 +1,6 @@
 {
   "name": "RNEPieChart",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,9 +10,8 @@
   "displayName": "Pie Chart",
   "description": "Unified pie chart component supporting all variations: basic, donut, stacked, label, legend, donut-text, donut-active, interactive, and separator-none configurations",
   "iconUrl": "icon.svg",
-  "dependencies": {
-    "@wavemaker/react-native-echarts": "1.0.1",
-    "@shopify/react-native-skia": "2.6.2"
+  "devDependencies": {
+    "@wavemaker/react-native-echarts": "^1.1.0"
   },
   "keywords": [
     "pie",

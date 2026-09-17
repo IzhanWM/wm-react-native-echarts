@@ -28,6 +28,10 @@ export interface HeatmapChartProps extends CommonChartProps {
   data: HeatmapDataPoint[];
   /** When true, shows the numeric value on each cell. @default false */
   showLabel?: boolean;
+  /**
+   * ECharts heatmap label formatter, passed straight through to the series' `label.formatter`
+   */
+  labelFormatter?: (params: any) => string;
   /** Whether to emphasize the hovered cell. @default true */
   showHighlighter?: boolean;
   /** Whether to show the X-axis line and category labels. @default true */

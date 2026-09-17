@@ -1,6 +1,6 @@
 {
   "name": "RNEBarChart",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,9 +10,8 @@
   "displayName": "Bar Chart",
   "description": "Bar chart is the horizontal orientation of column chart. Unified horizontal bar chart supporting default, interactive, multiple, stacked, label, custom-label, negative, active, and mixed configurations",
   "iconUrl": "icon.svg",
-  "dependencies": {
-    "@wavemaker/react-native-echarts": "1.0.1",
-    "@shopify/react-native-skia": "2.6.2"
+  "devDependencies": {
+    "@wavemaker/react-native-echarts": "^1.1.0"
   },
   "keywords": [
     "bar",

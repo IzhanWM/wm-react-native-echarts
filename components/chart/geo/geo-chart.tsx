@@ -5,6 +5,7 @@ import type { GeoChartProps, GeoChartSelectEvent, GeoDataItem } from './geo-char
 import { createGeoTooltipPreset, useGeoItemTooltip } from './tooltip';
 import type { GeoItemTooltipContext } from './tooltip/geo-item-tooltip.types';
 import { SkiaChart, SkiaRenderer } from '@wuba/react-native-echarts';
+import { scrollFriendlyGesture } from '../gesture';
 import { MapChart } from 'echarts/charts';
 import { TooltipComponent, VisualMapComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
@@ -259,7 +260,7 @@ const ChartComponent = ({
 
   return (
     <View style={{ width, height, position: 'relative' }}>
-      <SkiaChart ref={chartRef} useRNGH />
+      <SkiaChart ref={chartRef} useRNGH gesture={scrollFriendlyGesture} />
       {renderGeoTooltipOverlay()}
     </View>
   );

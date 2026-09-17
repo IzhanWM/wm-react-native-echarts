@@ -2,6 +2,7 @@ import { withResponsiveContainer } from '../chart-container';
 import { useChartTheme, withChartTheme } from '../chart-theme.context';
 import type { ScatterChartProps } from './scatter-chart.props';
 import { SkiaChart, SkiaRenderer } from '@wuba/react-native-echarts';
+import { scrollFriendlyGesture } from '../gesture';
 import { LineChart as EChartsLineChart, ScatterChart as EChartsScatterChart } from 'echarts/charts';
 import {
   GridComponent,
@@ -73,6 +74,8 @@ const ChartComponent = ({
   yAxisTickLabelFormatter,
   xAxisLabel,
   yAxisLabel,
+  xAxisNameGap,
+  yAxisNameGap,
   minX,
   maxX,
   intervalX,
@@ -170,7 +173,7 @@ const ChartComponent = ({
       ...(xAxisLabel != null && xAxisLabel !== '' && {
         name: xAxisLabel,
         nameLocation: 'middle',
-        nameGap: 25,
+        nameGap: xAxisNameGap ?? 25,
         nameTextStyle: { color: theme.axis.x.tickLabelColor },
       }),
       axisLabel: {
@@ -212,7 +215,7 @@ const ChartComponent = ({
       ...(yAxisLabel != null && yAxisLabel !== '' && {
         name: yAxisLabel,
         nameLocation: 'middle',
-        nameGap: 40,
+        nameGap: yAxisNameGap ?? 40,
         nameTextStyle: { color: theme.axis.y.tickLabelColor },
       }),
       axisLabel: {
@@ -354,6 +357,8 @@ const ChartComponent = ({
     yAxisTickLabelFormatter,
     xAxisLabel,
     yAxisLabel,
+    xAxisNameGap,
+    yAxisNameGap,
     valueAxisBounds,
     categoryAxisBounds,
   ]);
@@ -425,7 +430,7 @@ const ChartComponent = ({
 
   return (
     <View style={{ width, height, position: 'relative' }}>
-      <SkiaChart ref={chartRef} useRNGH />
+      <SkiaChart ref={chartRef} useRNGH gesture={scrollFriendlyGesture} />
       {renderScatterTooltipOverlay()}
     </View>
   );

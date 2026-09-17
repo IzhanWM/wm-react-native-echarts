@@ -59,6 +59,15 @@ export const YAxisLabel: Story = {
   },
 };
 
+/** yAxisNameGap — extra distance (px) between the Y-axis label and the axis line. */
+export const YAxisNameGap: Story = {
+  args: {
+    data,
+    yAxisLabel: 'Y',
+    yAxisNameGap: 55,
+  },
+};
+
 /** minY and maxY — fixed Y range with non-zero floor (bubble Y is about 15–30). */
 export const FixedMinMax: Story = {
   args: {

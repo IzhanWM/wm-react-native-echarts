@@ -45,6 +45,15 @@ export const YAxisLabel: Story = {
   },
 };
 
+/** yAxisNameGap — extra distance (px) between the Y-axis label and the axis line. */
+export const YAxisNameGap: Story = {
+  args: {
+    data,
+    yAxisLabel: 'Value',
+    yAxisNameGap: 55,
+  },
+};
+
 /** minY and maxY — fixed value-axis bounds (non-zero min, headroom above the bars). */
 export const FixedMinMax: Story = {
   args: {

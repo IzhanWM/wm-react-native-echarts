@@ -14,6 +14,7 @@ import {
 import { createRadarTooltipPreset, useRadarItemTooltip } from './tooltip';
 import type { RadarItemTooltipContext } from './tooltip/radar-item-tooltip.types';
 import { SkiaChart, SkiaRenderer } from '@wuba/react-native-echarts';
+import { scrollFriendlyGesture } from '../gesture';
 import { RadarChart as EChartsRadarChart } from 'echarts/charts';
 import {
   GridComponent,
@@ -284,7 +285,7 @@ const ChartComponent = ({
 
   return (
     <View style={{ width, height, position: 'relative' }}>
-      <SkiaChart ref={chartRef} useRNGH />
+      <SkiaChart ref={chartRef} useRNGH gesture={scrollFriendlyGesture} />
       {renderRadarTooltipOverlay()}
     </View>
   );

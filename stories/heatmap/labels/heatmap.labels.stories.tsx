@@ -14,3 +14,12 @@ export const Default: Story = {
 export const WithCellLabels: Story = {
   args: { ...heatmapBaseArgs, showLabel: true },
 };
+
+/** Custom formatter: prefix the value. */
+export const CustomFormatter: Story = {
+  args: {
+    ...heatmapBaseArgs,
+    showLabel: true,
+    labelFormatter: (params: any) => `${params.value[2]}°`,
+  },
+};

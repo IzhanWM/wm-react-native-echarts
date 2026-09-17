@@ -100,6 +100,10 @@ export interface PieChartProps extends CommonChartProps {
    */
   showLabelLine?: boolean;
   /**
+   * ECharts pie label formatter, passed straight through to the series' `label.formatter`
+   */
+  labelFormatter?: (params: any) => string;
+  /**
    * Whether to emphasize (scale/highlight) the hovered slice.
    * @default true
    */

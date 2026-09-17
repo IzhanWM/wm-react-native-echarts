@@ -30,7 +30,7 @@
     "signature",
     "skia"
   ],
-  "version": "1.0.2",
+  "version": "1.1.2",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -39,6 +39,7 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "storybook": "storybook dev -p 6006",
+    "storybook:clean": "rm -rf node_modules/.cache/storybook node_modules/.vite && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "generate:wmx": "node ./scripts/generate-wmx.js",
     "build:lib": "node ./scripts/build-lib.js",
@@ -63,6 +64,11 @@
     "react-native-svg": "*",
     "react-native-webview": "*",
     "zrender": "*"
+  },
+  "peerDependenciesMeta": {
+    "@shopify/react-native-skia": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@react-navigation/native": "^7.1.8",

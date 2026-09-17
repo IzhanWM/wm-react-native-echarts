@@ -58,6 +58,16 @@ export const XAxisLabel: Story = {
   },
 };
 
+/** xAxisNameGap — extra distance (px) between the X-axis label and the axis line. */
+export const XAxisNameGap: Story = {
+  args: {
+    data,
+    xAxisData,
+    xAxisLabel: 'Day',
+    xAxisNameGap: 45,
+  },
+};
+
 /** minX and maxX — fixed category window (five sessions → indices 1–3). */
 export const FixedMinMax: Story = {
   args: {

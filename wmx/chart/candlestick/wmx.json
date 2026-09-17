@@ -1,6 +1,6 @@
 {
   "name": "RNECandlestickChart",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,9 +10,8 @@
   "displayName": "Candlestick Chart",
   "description": "Candlestick (OHLC) chart with optional volume bars and moving averages (MA5, MA10, MA20)",
   "iconUrl": "icon.svg",
-  "dependencies": {
-    "@wavemaker/react-native-echarts": "1.0.1",
-    "@shopify/react-native-skia": "2.6.2"
+  "devDependencies": {
+    "@wavemaker/react-native-echarts": "^1.1.0"
   },
   "keywords": [
     "candlestick",

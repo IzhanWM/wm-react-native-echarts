@@ -25,6 +25,9 @@ npm install @shopify/react-native-skia @wuba/react-native-echarts echarts@6.0.0 
 
 `react` and `react-native` are also peers; they should already be present in your app.
 
+Deploying to a browser (Vite, Webpack, Next.js, Expo web)? See [WEB.md](WEB.md) — `@shopify/react-native-skia`
+is an optional peer and isn't needed for web-only builds.
+
 **Note**:
 There is an issue with echarts library. Due to which compilation fails with an error. Here is the link to the issue.
 https://github.com/apache/echarts/pull/20485
@@ -344,6 +347,30 @@ Preview thumbnails for the chart examples in `assets/images/charts`. Each image 
       <td align="center">
         <a href="https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-scatter-symbol--triangle" target="_blank">
           <img src="assets/images/charts/scatter/with-symbol.png" width="200" height="200" alt="Scatter chart with symbol" style="object-fit: contain;" /><br /><sub>with-symbol</sub>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Stack
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-stack--arc" target="_blank">
+          <img src="assets/images/charts/stack/arc.png" width="200" height="200" alt="Stack chart arc" style="object-fit: contain;" /><br /><sub>arc</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-stack--with-remainder" target="_blank">
+          <img src="assets/images/charts/stack/flat.png" width="200" height="200" alt="Stack chart flat bar" style="object-fit: contain;" /><br /><sub>flat</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://wavemaker.github.io/wm-react-native-echarts/?path=/story/charts-stack--semi-circle" target="_blank">
+          <img src="assets/images/charts/stack/semicircle.png" width="200" height="200" alt="Stack chart semi circle" style="object-fit: contain;" /><br /><sub>semicircle</sub>
         </a>
       </td>
     </tr>
