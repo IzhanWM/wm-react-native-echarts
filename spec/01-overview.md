@@ -24,9 +24,11 @@ Consumers get declarative React components (`LineChart`, `PieChart`, etc.) with 
 ```
 wm-react-native-echarts/
 ├── components/chart/     # Library source (published after tsc)
+├── components/ui-widgets/ # UI widgets library source (same npm package as charts)
 ├── components/wmx-context.md
 ├── stories/              # Storybook stories + MDX docs
 ├── wmx/chart/            # WaveMaker widget sources (wmx.json + thin re-exports)
+├── wmx/ui-widgets/        # WaveMaker widget sources for the UI widgets
 ├── scripts/              # build-lib, prepare-npm, generate-wmx
 ├── expo-app/             # Expo demo (yalc-linked package)
 ├── assets/               # README gallery images
@@ -35,11 +37,21 @@ wm-react-native-echarts/
 └── spec/                 # This AI-oriented documentation set
 ```
 
+## UI widgets in this repo
+
+`components/ui-widgets/` builds and publishes alongside the charts, from the same
+`@wavemaker/react-native-echarts` package — QR code, avatar stack, segment
+progress, swipe deck, reorder list, signature pad and Skia effect. It shares this
+repo's Storybook, WMX generator, Expo demo, and build pipeline, even though it
+never imports ECharts and the charts never import it. Widget-only peer deps
+(Skia, WebView) are declared optional so a chart-only consumer isn't forced to
+install them. See [09-ui-widgets.md](./09-ui-widgets.md).
+
 ## Public API surface
 
 - **Monorepo dev** imports: `@components/chart/...` (Storybook alias).
-- **npm consumers** import from package entry or subpaths after build, e.g. `@wavemaker/react-native-echarts`, `@wavemaker/react-native-echarts/line`.
-- **Barrel export**: `components/chart/index.ts` re-exports all chart types, theme helpers, tooltips, and `ChartContainer` utilities.
+- **npm consumers** import from package entry or subpaths after build, e.g. `@wavemaker/react-native-echarts`, `@wavemaker/react-native-echarts/line`, `@wavemaker/react-native-echarts/avatarstack`.
+- **Barrel export**: `components/chart/index.ts` re-exports all chart types, theme helpers, tooltips, and `ChartContainer` utilities; `components/ui-widgets/index.ts` re-exports every widget.
 
 ## Chart families (high level)
 

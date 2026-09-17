@@ -14,14 +14,16 @@ const preview: Preview = {
         ];
         const introPrefix = 'Introduction/';
         const chartsPrefix = 'Charts/';
+        const uiWidgetsPrefix = 'UI Widgets/';
         const examplesPrefix = 'Examples/';
         const themingPrefix = 'Theming/';
         const bucket = (title) => {
           if (title.startsWith(introPrefix)) return 0;
           if (title.startsWith(themingPrefix) || title === 'Theming') return 1;
           if (title.startsWith(chartsPrefix)) return 2;
-          if (title.startsWith(examplesPrefix)) return 3;
-          return 4;
+          if (title.startsWith(uiWidgetsPrefix) || title === 'UI Widgets') return 3;
+          if (title.startsWith(examplesPrefix)) return 4;
+          return 5;
         };
         const ba = bucket(a.title);
         const bb = bucket(b.title);
@@ -45,7 +47,7 @@ const preview: Preview = {
             return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
           }
         }
-        if (ba === 3) {
+        if (ba === 4) {
           const examplesOrder = [
             'Examples/Area',
             'Examples/Bar',

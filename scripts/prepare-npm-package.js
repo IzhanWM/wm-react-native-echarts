@@ -81,11 +81,21 @@ function buildPackageJson() {
 
   // Runtime deps that the built package should declare (from root dependencies)
   const runtimeDeps = [
-    '@shopify/react-native-skia',
     '@wuba/react-native-echarts',
     'echarts',
     'zrender',
+    'react-native-qrcode-svg',
+    'react-native-reorderable-list',
+    'react-native-signature-canvas',
+  ];
+  // Peer deps beyond react/react-native: required by charts and/or UI widgets,
+  // but left to the host app to install so versions aren't duplicated.
+  const peerDeps = [
     'react-native-svg',
+    '@shopify/react-native-skia',
+    'react-native-gesture-handler',
+    'react-native-reanimated',
+    'react-native-webview',
   ];
   const dependencies = {};
   const allDeps = { ...(rootPkg.dependencies || {}), ...(rootPkg.devDependencies || {}) };
@@ -98,9 +108,13 @@ function buildPackageJson() {
     react: rootPeers.react || '*',
     'react-native': rootPeers['react-native'] || '*',
   };
-  for (const dep of runtimeDeps) {
+  for (const dep of peerDeps) {
     peerDependencies[dep] = rootPeers[dep] || allDeps[dep] || '*';
   }
+  const peerDependenciesMeta = {
+    '@shopify/react-native-skia': { optional: true },
+    'react-native-webview': { optional: true },
+  };
 
   const entries = findEntryPoints(distDir);
   const main = 'index.js';
@@ -128,6 +142,7 @@ function buildPackageJson() {
     }),
     files: ['*'],
     peerDependencies,
+    peerDependenciesMeta,
     dependencies,
   };
 

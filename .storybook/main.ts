@@ -57,6 +57,8 @@ const config: StorybookConfig = {
         include: ['react-native-web'],
         esbuildOptions: {
           resolveExtensions: ['.web.js', '.web.jsx', '.web.ts', '.web.tsx', '.js', '.jsx', '.ts', '.tsx'],
+          // react-native-qrcode-svg (and similar RN packages) ship JSX in .js files.
+          loader: { '.js': 'jsx' },
         },
       },
       build: {

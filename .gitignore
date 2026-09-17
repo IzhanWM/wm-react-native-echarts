@@ -22,6 +22,8 @@ pnpm-lock.yaml
 .expo-shared/
 dist/
 web-build/
+android/
+ios/
 
 
 .yalc/

@@ -12,6 +12,7 @@ Documentation for agents and humans who need to understand this repository **wit
 6. Use [06-build-wmx-publish.md](./06-build-wmx-publish.md) for npm/WMX packaging.
 7. Use [07-storybook-development.md](./07-storybook-development.md) for verification and local dev.
 8. Read [08-spec-based-development-readiness.md](./08-spec-based-development-readiness.md) — **are we ready to start spec-based dev?** (yes, with two layers).
+9. Use [09-ui-widgets.md](./09-ui-widgets.md) for the UI widgets that publish alongside the charts in this repo.
 
 ## File index
 
@@ -25,13 +26,15 @@ Documentation for agents and humans who need to understand this repository **wit
 | [06-build-wmx-publish.md](./06-build-wmx-publish.md) | `build:lib`, WMX zips, npm | ≤200 |
 | [07-storybook-development.md](./07-storybook-development.md) | Stories, Expo app, commands | ≤200 |
 | [08-spec-based-development-readiness.md](./08-spec-based-development-readiness.md) | Readiness: `spec/` + Storybook | ≤200 |
+| [09-ui-widgets.md](./09-ui-widgets.md) | UI widgets, platform split, WMX | ≤200 |
 
 ## Constraints for agents
 
 - **Do not change source code** when the task is spec-only (e.g. AID-16).
 - Prefer **spec-based development** for features: add/update a Storybook story first, then implement.
-- Published package name: `@wavemaker/react-native-echarts`.
-- Library source root: `components/chart/` (compiled to `dist/npm-packages/charts/`).
+- Published package name: `@wavemaker/react-native-echarts` (charts and UI widgets both).
+- Library source roots: `components/chart/` and `components/ui-widgets/` both compile into `dist/npm-packages/charts/`.
+- Charts and UI widgets share one version, but neither imports the other.
 - Branch naming for Paperclip work: `feat/AID-<n>-<slug>`.
 
 ## Related human docs

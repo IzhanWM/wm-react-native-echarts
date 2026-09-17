@@ -93,6 +93,58 @@ const chartTypes = [
       },
 ];
 
+const uiWidgets = [
+  {
+    id: 'qr-code-widget',
+    title: 'QR Code',
+    description: 'Vector QR symbol with an optional centered logo',
+    icon: 'qr-code' as const,
+    color: '#0f172a',
+  },
+  {
+    id: 'avatar-stack-widget',
+    title: 'Avatar Stack',
+    description: 'Overlapping avatars with presence dots and +N overflow',
+    icon: 'people' as const,
+    color: '#8b5cf6',
+  },
+  {
+    id: 'segment-progress-widget',
+    title: 'Segment Progress',
+    description: 'Multi-segment bar with per-segment rounded caps',
+    icon: 'stats-chart' as const,
+    color: '#10b981',
+  },
+  {
+    id: 'swipe-deck-widget',
+    title: 'Swipe Deck',
+    description: 'Card deck with pan physics and accept/reject gestures',
+    icon: 'layers' as const,
+    color: '#f43f5e',
+  },
+  {
+    id: 'reorder-list-widget',
+    title: 'Reorder List',
+    description: 'Long-press and drag rows into a new order',
+    icon: 'reorder-three' as const,
+    color: '#f59e0b',
+  },
+  {
+    id: 'signature-pad-widget',
+    title: 'Signature Pad',
+    description: 'Freehand capture exported as a base64 PNG',
+    icon: 'create' as const,
+    color: '#2563eb',
+  },
+  {
+    id: 'skia-effect-widget',
+    title: 'Skia Effect',
+    description: 'Blend modes and blur through a per-pixel canvas',
+    icon: 'color-filter' as const,
+    color: '#22d3ee',
+  },
+];
+
 export default function HomeScreen() {
   const { colorScheme } = useTheme();
   
@@ -134,6 +186,16 @@ export default function HomeScreen() {
     chartsGrid: {
       paddingHorizontal: 10,
       paddingBottom: 20,
+    },
+    sectionTitle: {
+      fontSize: 13,
+      fontWeight: '700',
+      textTransform: 'uppercase',
+      letterSpacing: 0.6,
+      paddingHorizontal: 10,
+      paddingTop: 6,
+      paddingBottom: 10,
+      color: colorScheme === 'dark' ? '#9ca3af' : '#6b7280',
     },
     chartCard: {
       backgroundColor: colorScheme === 'dark' ? '#2a2a2a' : '#fff',
@@ -183,40 +245,48 @@ export default function HomeScreen() {
         <View style={styles.headerTop}>
           <View style={styles.headerContent}>
             <Text style={styles.headerTitle}>
-              Charts Dashboard
+              Component Gallery
             </Text>
             <Text style={styles.headerSubtitle}>
-              Comprehensive data visualization with ECharts & Dark Mode Support
+              ECharts visualizations and UI widgets, with dark mode support
             </Text>
           </View>
           <ThemeToggle />
         </View>
       </View>
 
-      <View style={styles.chartsGrid}>
-        {chartTypes.map((chart) => (
-          <Link key={chart.id} href={chart.id as any} asChild>
-            <TouchableOpacity style={styles.chartCard}>
-              <View style={[styles.iconContainer, { backgroundColor: chart.color }]}>
-                <Ionicons name={chart.icon as any} size={32} color="white" />
-              </View>
-              <View style={styles.chartInfo}>
-                <Text style={styles.chartTitle}>
-                  {chart.title}
-                </Text>
-                <Text style={styles.chartDescription}>
-                  {chart.description}
-                </Text>
-              </View>
-              <Ionicons 
-                name="chevron-forward" 
-                size={20} 
-                color={colorScheme === 'dark' ? '#cccccc' : '#999'} 
-              />
-            </TouchableOpacity>
-          </Link>
-        ))}
-      </View>
+      {[
+        { heading: 'Charts', entries: chartTypes },
+        { heading: 'UI Widgets', entries: uiWidgets },
+      ].map((section) => (
+        <View key={section.heading}>
+          <Text style={styles.sectionTitle}>{section.heading}</Text>
+          <View style={styles.chartsGrid}>
+            {section.entries.map((entry) => (
+              <Link key={entry.id} href={entry.id as any} asChild>
+                <TouchableOpacity style={styles.chartCard}>
+                  <View style={[styles.iconContainer, { backgroundColor: entry.color }]}>
+                    <Ionicons name={entry.icon as any} size={32} color="white" />
+                  </View>
+                  <View style={styles.chartInfo}>
+                    <Text style={styles.chartTitle}>
+                      {entry.title}
+                    </Text>
+                    <Text style={styles.chartDescription}>
+                      {entry.description}
+                    </Text>
+                  </View>
+                  <Ionicons
+                    name="chevron-forward"
+                    size={20}
+                    color={colorScheme === 'dark' ? '#cccccc' : '#999'}
+                  />
+                </TouchableOpacity>
+              </Link>
+            ))}
+          </View>
+        </View>
+      ))}
     </ScrollView>
     </SafeAreaView>
   );

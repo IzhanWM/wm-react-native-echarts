@@ -10,6 +10,6 @@
       "@/contexts/ThemeContext": ["./components/lib-theme-context"]
     }
   },
-  "include": ["components/**/*.ts", "components/**/*.tsx"],
+  "include": ["components/chart/**/*.ts", "components/chart/**/*.tsx"],
   "exclude": ["**/wmx/**", "**/*.stories.*", "**/*.test.*", "**/*.spec.*", "components/theme-toggle.tsx"]
 }

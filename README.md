@@ -352,15 +352,82 @@ Preview thumbnails for the chart examples in `assets/images/charts`. Each image 
 
 ---
 
+## UI widgets
+
+`@wavemaker/react-native-echarts` also ships a set of standalone React Native UI
+widgets alongside the charts, published from the same package so there is only
+one dependency to install and version.
+
+```bash
+npm install @wavemaker/react-native-echarts
+npm install react-native-svg react-native-gesture-handler react-native-reanimated
+# optional, per widget:
+npm install @shopify/react-native-skia   # SkiaEffect
+npm install react-native-webview         # native SignaturePad
+```
+
+```tsx
+import { QrCode, AvatarStack, SegmentProgress } from '@wavemaker/react-native-echarts';
+
+<QrCode value="https://www.wavemaker.com" size={180} />
+<AvatarStack dataset={members} maxVisible={4} />
+<SegmentProgress dataset={segments} total={128} />
+```
+
+### Widgets and platform support
+
+Every widget runs on **iOS, Android and web**.
+
+| Widget | Description | iOS / Android | Web |
+| --- | --- | :---: | :---: |
+| **QR Code** | Vector QR symbol with an optional centered logo | ✅ | ✅ |
+| **Avatar Stack** | Overlapping avatars, presence dots, `+N` overflow | ✅ | ✅ |
+| **Segment Progress** | Multi-segment bar with per-segment rounded caps | ✅ | ✅ |
+| **Swipe Deck** | Card deck with pan physics and accept/reject gestures | ✅ | ✅ |
+| **Reorder List** | Long-press and drag rows into a new order | ✅ | ⚠️ |
+| **Signature Pad** | Freehand capture exported as a base64 PNG | ✅ | ✅ |
+| **Skia Effect** | Blend modes and blur through a per-pixel canvas | ✅ | ✅ |
+
+Two widgets could not reach web through their native library, so each ships a
+**separate web implementation** behind the same public contract — selected by
+platform file extension, so the native-only dependency never enters the web
+bundle:
+
+- **Signature Pad** — `react-native-signature-canvas` needs a WebView, which
+  `react-native-web` has no equivalent for. The web build captures pointer strokes
+  and rasterizes them, returning the **same base64 PNG**, so pages never branch on
+  platform. Stroke width is fixed on web and speed-tapered on device.
+- **Skia Effect** — Skia on web needs the host app to load the CanvasKit WASM
+  bundle first. The web build reproduces the composition with CSS `filter` and
+  `mix-blend-mode`, which map one-to-one onto Skia's `Blur` and `blendMode`, and
+  pulls in no WASM.
+
+⚠️ **Reorder List on web**: `react-native-reorderable-list` declares no native
+modules, so it runs on web and drag works — but upstream tests iOS and Android
+only. Treat web drag as best-effort and keep a non-drag path for web users.
+
+**Swipe Deck** and **Reorder List** need a `GestureHandlerRootView` above them, on
+web as well as on device.
+
+Full detail: **UI Widgets → Platform Support** in the
+[Storybook](https://wavemaker.github.io/wm-react-native-echarts), and
+[`spec/09-ui-widgets.md`](spec/09-ui-widgets.md).
+
+---
+
 ## Building the library (maintainers)
 
-Compile components and prepare the npm package:
+Charts and UI widgets compile together into a single `@wavemaker/react-native-echarts`
+package.
 
 ```bash
 npm run build:lib      # TypeScript compile → dist/npm-packages/charts
 npm run prepare:npm    # Write package.json, copy README, .npmignore
 cd dist/npm-packages/charts && npm publish
 ```
+
+`npm run generate:package` runs both steps. The version comes from the root
+`package.json`.
 
 ---
 

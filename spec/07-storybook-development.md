@@ -30,7 +30,12 @@ Per chart type under `stories/<chart>/`:
 | `<chart>.stories.tsx` | Primary “default” story |
 | Subfolders | Feature slices: `tooltip/`, `legend/`, `colors/`, `interaction/`, etc. |
 
-Title pattern: `Charts/<ChartName>/...` or `Examples/...` for composite demos.
+Title pattern: `Charts/<ChartName>/...`, `UI Widgets/<WidgetName>/...`, or `Examples/...` for composite demos.
+
+UI widget stories live under `stories/ui-widgets/<widget>/` and follow the same
+shape, sharing `stories/ui-widgets/widget-decorator.tsx` (padded container, optional
+source snippet, optional `GestureHandlerRootView`) and `stories/ui-widgets/sample-data.ts`.
+See `spec/09-ui-widgets.md`.
 
 Introduction docs: `stories/introduction/*.mdx` (getting started, concepts, license).
 
@@ -53,7 +58,8 @@ Many metas wrap stories in a padded `View` and optionally show a **source** snip
 
 ## Expo sample app (`expo-app/`)
 
-- Expo Router screens under `expo-app/app/` — one route per chart family (`line-chart.tsx`, `pie-chart.tsx`, `heatmap-chart.tsx`, …).
+- Expo Router screens under `expo-app/app/` — one route per chart family (`line-chart.tsx`, `pie-chart.tsx`, `heatmap-chart.tsx`, …) and one per UI widget (`qr-code-widget.tsx`, `swipe-deck-widget.tsx`, …).
+- Widget screens are the **only** way to exercise the native code paths of `SignaturePad` and `SkiaEffect`; Storybook always runs their web implementations.
 - Consumes library through **yalc** after `npm run generate:package` from monorepo root.
 - `expo-app/contexts/ThemeContext.tsx` — app-level light/dark (separate from `ChartThemeProvider`).
 
@@ -76,7 +82,8 @@ A change without a story is incomplete unless the task exempts it (typos, spec-o
 | Doc/spec only | Confirm `spec/*.md` line counts ≤200; no source edits |
 | Component change | `npm run lint` + relevant story path |
 | Release/docs deploy | `npm run build-storybook` |
-| API surface | `npm run build:lib` |
+| API surface | `npm run build:lib` (charts + widgets) |
+| Platform-split widget | Storybook (web path) **and** the Expo screen (native path) |
 
 ## Branch naming
 

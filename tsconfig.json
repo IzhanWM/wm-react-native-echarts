@@ -16,7 +16,8 @@
     "target": "ESNext",
     "paths": {
       "@wavemaker/react-native-echarts/*": [
-        "./components/chart/*"
+        "./components/chart/*",
+        "./components/ui-widgets/*"
       ],
       "@components/*": [
         "./components/*"

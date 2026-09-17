@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist/npm-packages/charts",
+    "rootDir": "components/ui-widgets",
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": ["components/ui-widgets/**/*.ts", "components/ui-widgets/**/*.tsx"],
+  "exclude": ["**/wmx/**", "**/*.stories.*", "**/*.test.*", "**/*.spec.*"]
+}
