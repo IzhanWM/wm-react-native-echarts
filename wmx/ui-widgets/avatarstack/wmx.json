@@ -122,6 +122,12 @@
   },
   "group": "ui-widgets/avatarstack",
   "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/default.png",
+      "/assets/images/large-overlap.png",
+      "/assets/images/initials-fallback.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
     "icon": "icon.svg",
     "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/ui-widgets-avatar-stack--default"
   },

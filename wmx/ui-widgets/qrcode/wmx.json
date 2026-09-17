@@ -112,6 +112,12 @@
   },
   "group": "ui-widgets/qrcode",
   "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/default.png",
+      "/assets/images/branded-colors.png",
+      "/assets/images/plain-text.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
     "icon": "icon.svg",
     "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/ui-widgets-qr-code--default"
   },

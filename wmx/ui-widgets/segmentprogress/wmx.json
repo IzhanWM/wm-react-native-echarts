@@ -122,6 +122,12 @@
   },
   "group": "ui-widgets/segmentprogress",
   "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/summed-total.png",
+      "/assets/images/fixed-total.png",
+      "/assets/images/wide-gaps.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
     "icon": "icon.svg",
     "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/ui-widgets-segment-progress--default"
   },

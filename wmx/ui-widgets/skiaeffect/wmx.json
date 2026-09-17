@@ -102,6 +102,12 @@
   },
   "group": "ui-widgets/skiaeffect",
   "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/screen-blend.png",
+      "/assets/images/sunset-blur.png",
+      "/assets/images/no-blur.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
     "icon": "icon.svg",
     "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/ui-widgets-skia-effect--default"
   },

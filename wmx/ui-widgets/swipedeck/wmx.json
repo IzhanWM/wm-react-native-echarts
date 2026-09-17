@@ -172,6 +172,12 @@
   },
   "group": "ui-widgets/swipedeck",
   "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/deck.png",
+      "/assets/images/dragging.png",
+      "/assets/images/after-swipe.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
     "icon": "icon.svg",
     "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/ui-widgets-swipe-deck--default"
   },

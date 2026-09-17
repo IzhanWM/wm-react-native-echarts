@@ -128,6 +128,12 @@
   },
   "group": "ui-widgets/reorderlist",
   "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/rows.png",
+      "/assets/images/dragging.png",
+      "/assets/images/reordered.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
     "icon": "icon.svg",
     "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/ui-widgets-reorder-list--default"
   },

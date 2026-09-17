@@ -89,6 +89,12 @@
   },
   "group": "ui-widgets/signaturepad",
   "marketplace_unsupported": {
+    "carouselImages": [
+      "/assets/images/empty-pad.png",
+      "/assets/images/signed.png",
+      "/assets/images/exported-png.png"
+    ],
+    "thumbnailImage": "/assets/images/thumbnail.png",
     "icon": "icon.svg",
     "previewUrl": "https://wavemaker.github.io/wm-react-native-echarts/?path=/story/ui-widgets-signature-pad--default"
   },
